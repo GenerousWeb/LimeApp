@@ -14,6 +14,7 @@ export type BikeContextType = {
   directionCoordinates?: number[][];
   routeTime?: number;
   routeDistance?: number;
+  nearbyRiders: BikeInfo[];
 };
 
 export type AuthContextType = {

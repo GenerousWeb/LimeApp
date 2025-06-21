@@ -9,8 +9,10 @@ import { useBikeProvider } from '~/providers/BikeProvider';
 import { BikeContextType } from '~/types/provider';
 
 export default function BikeMarkers() {
-  const bikersVector = featureCollection(bikers.map((s) => point([s.long, s.lat], { bike: s })));
-  const { setSelectedBike } = useBikeProvider() as BikeContextType;
+  const { setSelectedBike, nearbyRiders } = useBikeProvider() as BikeContextType;
+  const bikersVector = featureCollection(
+    nearbyRiders.map((s) => point([s.long, s.lat], { bike: s }))
+  );
 
   const onPointPress = async (event: OnPressEvent) => {
     if (event.features[0].properties?.bike) {
