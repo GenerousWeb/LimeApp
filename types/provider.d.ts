@@ -1,3 +1,4 @@
+import { Session } from '@supabase/supabase-js';
 import { Direction } from './direction';
 
 export interface BikeInfo {
@@ -13,4 +14,9 @@ export type BikeContextType = {
   directionCoordinates?: number[][];
   routeTime?: number;
   routeDistance?: number;
+};
+
+export type AuthContextType = {
+  isAuthenticated: boolean;
+  session?: Session | null;
 };
