@@ -20,4 +20,11 @@ export type BikeContextType = {
 export type AuthContextType = {
   isAuthenticated: boolean;
   session?: Session | null;
+  userId?: string;
+};
+
+export type RideContextType = {
+  startRide: (bikeId: number) => void;
+  finishRide: () => void;
+  ride: BikeInfo | null;
 };

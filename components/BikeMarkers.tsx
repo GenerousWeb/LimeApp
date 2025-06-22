@@ -2,8 +2,6 @@ import { ShapeSource, SymbolLayer, CircleLayer, Images } from '@rnmapbox/maps';
 import { OnPressEvent } from '@rnmapbox/maps/lib/typescript/src/types/OnPressEvent';
 import { featureCollection, point } from '@turf/helpers';
 
-import bikers from '../data/bikers.json';
-
 import pin from '~/assets/motorbike.png';
 import { useBikeProvider } from '~/providers/BikeProvider';
 import { BikeContextType } from '~/types/provider';

@@ -8,6 +8,7 @@ import { Button } from './Button';
 
 import bikeImg from '~/assets/motorbike.png';
 import { useBikeProvider } from '~/providers/BikeProvider';
+import { useRide } from '~/providers/RideProvider';
 import { BikeContextType } from '~/types/provider';
 
 const styles = StyleSheet.create({
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
 
 export default function SelectedBikeSheet() {
   const { selectedBike, routeTime, routeDistance } = useBikeProvider() as BikeContextType;
-  // ref
+  const { startRide } = useRide();
   const bottomSheetRef = useRef<BottomSheet>(null);
 
   useEffect(() => {
@@ -69,9 +70,11 @@ export default function SelectedBikeSheet() {
           </View>
         </View>
         {/* Actions - Bottom part */}
-        <View>
-          <Button title="Start journey" />
-        </View>
+        {selectedBike?.id && (
+          <View>
+            <Button title="Start journey" onPress={() => startRide(selectedBike.id)} />
+          </View>
+        )}
       </BottomSheetView>
     </BottomSheet>
   );

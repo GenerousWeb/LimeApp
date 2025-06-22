@@ -25,7 +25,8 @@ export default function AuthProvider({ children }: PropsWithChildren) {
     return <ActivityIndicator />;
   }
   return (
-    <AuthContext.Provider value={{ session, isAuthenticated: !!session?.user }}>
+    <AuthContext.Provider
+      value={{ session, isAuthenticated: !!session?.user, userId: session?.user.id }}>
       {children}
     </AuthContext.Provider>
   );

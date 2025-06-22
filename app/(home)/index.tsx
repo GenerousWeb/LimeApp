@@ -1,17 +1,17 @@
 import Map from 'components/Map';
-import { Redirect, Stack } from 'expo-router';
-import { Button } from 'react-native';
+import { Stack } from 'expo-router';
 
+import ActiveRideSheet from '~/components/ActiveRideSheet';
 import SelectedBikeSheet from '~/components/SelectedBikeSheet';
-import { supabase } from '~/lib/supabase';
 
 export default function Home() {
   return (
     <>
       <Stack.Screen options={{ title: 'Home', headerShown: false }} />
       <Map />
-      <Button title="Sign out" onPress={() => supabase.auth.signOut()} />
+      {/* <Button title="Sign out" onPress={() => supabase.auth.signOut()} /> */}
       <SelectedBikeSheet />
+      <ActiveRideSheet />
     </>
   );
   // return <Redirect href="/auth" />;
