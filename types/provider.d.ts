@@ -8,9 +8,9 @@ export interface BikeInfo {
 }
 
 export type BikeContextType = {
-  selectedBike?: BikeInfo;
-  setSelectedBike: (val: BikeInfo) => void;
-  direction?: Direction;
+  selectedBike?: BikeInfo | null;
+  setSelectedBike: (val: BikeInfo | null) => void;
+  direction?: Direction | null;
   directionCoordinates?: number[][];
   routeTime?: number;
   routeDistance?: number;

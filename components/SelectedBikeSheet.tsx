@@ -24,13 +24,16 @@ const styles = StyleSheet.create({
 });
 
 export default function SelectedBikeSheet() {
-  const { selectedBike, routeTime, routeDistance } = useBikeProvider() as BikeContextType;
+  const { selectedBike, routeTime, routeDistance, setSelectedBike } =
+    useBikeProvider() as BikeContextType;
   const { startRide } = useRide();
   const bottomSheetRef = useRef<BottomSheet>(null);
 
   useEffect(() => {
     if (selectedBike) {
       bottomSheetRef.current?.expand();
+    } else {
+      bottomSheetRef.current?.close();
     }
   }, [selectedBike]);
 
@@ -41,7 +44,8 @@ export default function SelectedBikeSheet() {
       snapPoints={[200]}
       enablePanDownToClose
       enableDynamicSizing
-      index={-1}>
+      index={-1}
+      onClose={() => setSelectedBike(null)}>
       <BottomSheetView style={{ flex: 1, padding: 10 }}>
         {/*Top Part*/}
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
@@ -72,7 +76,13 @@ export default function SelectedBikeSheet() {
         {/* Actions - Bottom part */}
         {selectedBike?.id && (
           <View>
-            <Button title="Start journey" onPress={() => startRide(selectedBike.id)} />
+            <Button
+              title="Start journey"
+              onPress={() => {
+                startRide(selectedBike.id);
+                setSelectedBike(null);
+              }}
+            />
           </View>
         )}
       </BottomSheetView>

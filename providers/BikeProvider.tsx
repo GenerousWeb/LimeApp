@@ -10,8 +10,8 @@ import { BikeContextType, BikeInfo } from '~/types/provider';
 const BikeContext = createContext<BikeContextType | null>(null);
 
 export default function BikeProvider({ children }: PropsWithChildren) {
-  const [selectedBike, setSelectedBike] = useState<BikeInfo>();
-  const [direction, setDirection] = useState<Direction>();
+  const [selectedBike, setSelectedBike] = useState<BikeInfo | null>();
+  const [direction, setDirection] = useState<Direction | null>();
   const [nearbyRiders, setNearbyRiders] = useState([]);
 
   useEffect(() => {
@@ -44,6 +44,8 @@ export default function BikeProvider({ children }: PropsWithChildren) {
     };
     if (selectedBike) {
       fetchDirections();
+    } else {
+      setDirection(null);
     }
   }, [selectedBike]);
   return (
